@@ -344,7 +344,7 @@ export default function CanvasPage() {
   }, [nodes, connections, formData]);
 
   return (
-    <div className="h-screen flex flex-col bg-gray-50" style={{ maxHeight: '800px', maxWidth: '800px' }}>
+    <div className="min-h-screen flex flex-col bg-gray-50">
       <div className="bg-white border-b border-gray-200 px-3 py-1.5">
         <Link 
           href="/"
@@ -361,7 +361,7 @@ export default function CanvasPage() {
         onExport={handleExport}
       />
       
-      <div className="flex-1 relative overflow-auto" style={{ maxHeight: '600px' }}>
+      <div className="flex-1 relative overflow-auto min-h-0">
         <Canvas
           ref={canvasRef}
           nodes={nodes}

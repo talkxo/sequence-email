@@ -201,7 +201,7 @@ export default function InputForm({ onSubmit, isLoading }: InputFormProps) {
             <p className="text-sm text-gray-600 mb-4">Configure your email campaign goals and preferences</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
             {/* Campaign Goal */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-3">Campaign Goal</label>
@@ -258,7 +258,7 @@ export default function InputForm({ onSubmit, isLoading }: InputFormProps) {
           {/* Sequence Length */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-3">Sequence Length</label>
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {EMAIL_COUNT_PRESETS.map((preset) => (
                 <button
                   key={preset.value}

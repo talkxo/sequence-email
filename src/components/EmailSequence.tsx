@@ -290,33 +290,34 @@ export default function EmailSequence({ emails, formData, onAddEmail, isAddingEm
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white relative" id="email-sequence-container">
+    <div className="max-w-4xl mx-auto p-4 sm:p-6 bg-white relative" id="email-sequence-container">
       {/* Header */}
-      <div className="mb-8">
-        <div className="flex items-center justify-between mb-3">
+      <div className="mb-6 sm:mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-3 gap-3">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center">
               <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
             </div>
-            <h1 className="text-2xl font-semibold text-gray-900">Email Nurture Sequence</h1>
+            <h1 className="text-xl sm:text-2xl font-semibold text-gray-900">Email Nurture Sequence</h1>
           </div>
           
           {/* Export Menu */}
           <div className="relative" ref={exportMenuRef}>
             <button
               onClick={() => setShowExportMenu(!showExportMenu)}
-              className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
+              className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors text-sm sm:text-base"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
-              Export
+              <span className="hidden sm:inline">Export</span>
+              <span className="sm:hidden">Export</span>
             </button>
             
             {showExportMenu && (
-              <div className="absolute right-0 top-full mt-2 w-64 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+              <div className="absolute right-0 top-full mt-2 w-64 sm:w-64 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
                 <div className="p-2">
                   <button
                     onClick={() => { generateHubspotFormat(); setShowExportMenu(false); }}
@@ -430,14 +431,16 @@ export default function EmailSequence({ emails, formData, onAddEmail, isAddingEm
                 <div>
                   {email.abVariants ? (
                     <div className="space-y-3">
-                      <div className="flex items-center gap-3">
-                        <span className="text-xs font-semibold text-blue-600 bg-blue-50 px-2 py-1 rounded-md">A</span>
-                        <h3 className="font-semibold text-gray-900 text-lg leading-tight flex-1">
-                          {email.abVariants.variantA}
-                        </h3>
+                      <div className="flex items-start gap-3">
+                        <span className="text-xs font-semibold text-blue-600 bg-blue-50 px-2 py-1 rounded-md flex-shrink-0 mt-1">A</span>
+                        <div className="flex-1 min-w-0">
+                          <h3 className="font-semibold text-gray-900 text-base sm:text-lg leading-tight break-words">
+                            {email.abVariants.variantA}
+                          </h3>
+                        </div>
                         <button
                           onClick={() => email.abVariants && copyToClipboard(email.abVariants.variantA, `variantA-${email.emailNumber}`)}
-                          className="p-1.5 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-md transition-colors"
+                          className="p-1.5 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-md transition-colors flex-shrink-0"
                           title="Copy variant A"
                         >
                           {copiedVariants.has(`variantA-${email.emailNumber}`) ? (
@@ -451,14 +454,16 @@ export default function EmailSequence({ emails, formData, onAddEmail, isAddingEm
                           )}
                         </button>
                       </div>
-                      <div className="flex items-center gap-3">
-                        <span className="text-xs font-semibold text-green-600 bg-green-50 px-2 py-1 rounded-md">B</span>
-                        <h3 className="font-semibold text-gray-900 text-lg leading-tight flex-1">
-                          {email.abVariants.variantB}
-                        </h3>
+                      <div className="flex items-start gap-3">
+                        <span className="text-xs font-semibold text-green-600 bg-green-50 px-2 py-1 rounded-md flex-shrink-0 mt-1">B</span>
+                        <div className="flex-1 min-w-0">
+                          <h3 className="font-semibold text-gray-900 text-base sm:text-lg leading-tight break-words">
+                            {email.abVariants.variantB}
+                          </h3>
+                        </div>
                         <button
                           onClick={() => email.abVariants && copyToClipboard(email.abVariants.variantB, `variantB-${email.emailNumber}`)}
-                          className="p-1.5 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-md transition-colors"
+                          className="p-1.5 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-md transition-colors flex-shrink-0"
                           title="Copy variant B"
                         >
                           {copiedVariants.has(`variantB-${email.emailNumber}`) ? (
@@ -474,13 +479,15 @@ export default function EmailSequence({ emails, formData, onAddEmail, isAddingEm
                       </div>
                     </div>
                   ) : (
-                    <div className="flex items-center gap-3">
-                      <h3 className="font-semibold text-gray-900 text-lg leading-tight flex-1">
-                        {email.subject}
-                      </h3>
+                    <div className="flex items-start gap-3">
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-semibold text-gray-900 text-base sm:text-lg leading-tight break-words">
+                          {email.subject}
+                        </h3>
+                      </div>
                       <button
                         onClick={() => handleCopySubject(email)}
-                        className="p-1.5 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-md transition-colors"
+                        className="p-1.5 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-md transition-colors flex-shrink-0"
                         title="Copy subject"
                       >
                         {copiedSubjects.has(email.emailNumber) ? (
