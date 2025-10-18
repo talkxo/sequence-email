@@ -13,6 +13,7 @@ interface EmailSequenceProps {
 
 export default function EmailSequence({ emails, formData, onAddEmail, isAddingEmail, setEmails }: EmailSequenceProps) {
   const [copiedSubjects, setCopiedSubjects] = useState<Set<number>>(new Set());
+  const [copiedVariants, setCopiedVariants] = useState<Set<string>>(new Set());
   const [generatingABFor, setGeneratingABFor] = useState<number | null>(null);
   const [showExportMenu, setShowExportMenu] = useState(false);
   const exportMenuRef = useRef<HTMLDivElement>(null);
@@ -85,27 +86,57 @@ export default function EmailSequence({ emails, formData, onAddEmail, isAddingEm
     return <span className="text-sm text-gray-500">No details available</span>;
   };
 
+  const copyToClipboard = async (text: string, identifier: string) => {
+    try {
+      // Check if clipboard API is available
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+      } else {
+        // Fallback for older browsers or non-secure contexts
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-999999px';
+        textArea.style.top = '-999999px';
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+      }
+      
+      // Set copied state
+      if (identifier.includes('variant')) {
+        setCopiedVariants(prev => new Set([...prev, identifier]));
+        setTimeout(() => {
+          setCopiedVariants(prev => {
+            const newSet = new Set(prev);
+            newSet.delete(identifier);
+            return newSet;
+          });
+        }, 2000);
+      } else {
+        setCopiedSubjects(prev => new Set([...prev, parseInt(identifier)]));
+        setTimeout(() => {
+          setCopiedSubjects(prev => {
+            const newSet = new Set(prev);
+            newSet.delete(parseInt(identifier));
+            return newSet;
+          });
+        }, 2000);
+      }
+    } catch (error) {
+      console.error('Failed to copy text:', error);
+      alert('Failed to copy to clipboard. Please try again.');
+    }
+  };
+
   const handleCopySubject = async (email: Email) => {
     const subjectToCopy = email.abVariants ? 
       `${email.abVariants.variantA} (A) / ${email.abVariants.variantB} (B)` : 
       email.subject;
     
-    try {
-      await navigator.clipboard.writeText(subjectToCopy);
-      setCopiedSubjects(prev => new Set([...prev, email.emailNumber]));
-      
-      // Remove the copied state after 2 seconds
-      setTimeout(() => {
-        setCopiedSubjects(prev => {
-          const newSet = new Set(prev);
-          newSet.delete(email.emailNumber);
-          return newSet;
-        });
-      }, 2000);
-    } catch (error) {
-      console.error('Failed to copy subject:', error);
-      alert('Failed to copy subject to clipboard');
-    }
+    await copyToClipboard(subjectToCopy, email.emailNumber.toString());
   };
 
   const generateHubspotFormat = () => {
@@ -405,13 +436,19 @@ export default function EmailSequence({ emails, formData, onAddEmail, isAddingEm
                           {email.abVariants.variantA}
                         </h3>
                         <button
-                          onClick={() => email.abVariants && navigator.clipboard.writeText(email.abVariants.variantA)}
+                          onClick={() => email.abVariants && copyToClipboard(email.abVariants.variantA, `variantA-${email.emailNumber}`)}
                           className="p-1.5 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-md transition-colors"
                           title="Copy variant A"
                         >
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                          </svg>
+                          {copiedVariants.has(`variantA-${email.emailNumber}`) ? (
+                            <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                            </svg>
+                          ) : (
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                            </svg>
+                          )}
                         </button>
                       </div>
                       <div className="flex items-center gap-3">
@@ -420,13 +457,19 @@ export default function EmailSequence({ emails, formData, onAddEmail, isAddingEm
                           {email.abVariants.variantB}
                         </h3>
                         <button
-                          onClick={() => email.abVariants && navigator.clipboard.writeText(email.abVariants.variantB)}
+                          onClick={() => email.abVariants && copyToClipboard(email.abVariants.variantB, `variantB-${email.emailNumber}`)}
                           className="p-1.5 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-md transition-colors"
                           title="Copy variant B"
                         >
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                          </svg>
+                          {copiedVariants.has(`variantB-${email.emailNumber}`) ? (
+                            <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                            </svg>
+                          ) : (
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                            </svg>
+                          )}
                         </button>
                       </div>
                     </div>

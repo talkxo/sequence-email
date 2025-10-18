@@ -13,7 +13,23 @@ export default function EmailCard({ email }: EmailCardProps) {
 
   const copyToClipboard = async (text: string, type: 'subject' | 'body') => {
     try {
-      await navigator.clipboard.writeText(text);
+      // Check if clipboard API is available
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+      } else {
+        // Fallback for older browsers or non-secure contexts
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-999999px';
+        textArea.style.top = '-999999px';
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+      }
+      
       if (type === 'subject') {
         setCopiedSubject(true);
         setTimeout(() => setCopiedSubject(false), 2000);
@@ -23,6 +39,7 @@ export default function EmailCard({ email }: EmailCardProps) {
       }
     } catch (err) {
       console.error('Failed to copy text: ', err);
+      alert('Failed to copy to clipboard. Please try again.');
     }
   };
 
