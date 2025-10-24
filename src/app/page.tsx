@@ -77,7 +77,7 @@ export default function Home() {
           <div className="flex items-center justify-center mb-8">
             <button
               onClick={() => document.getElementById('email-form')?.scrollIntoView({ behavior: 'smooth' })}
-              className="bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold text-base hover:bg-purple-700 transition-colors flex items-center gap-2 shadow-lg hover:shadow-xl"
+              className="bg-pink-500 text-white px-6 py-3 rounded-lg font-semibold text-base hover:bg-pink-600 transition-colors flex items-center gap-2 shadow-lg hover:shadow-xl"
             >
               Start climbing with Ladder
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -131,7 +131,7 @@ export default function Home() {
               href="https://hello.talkxo.com" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold text-sm hover:bg-purple-700 transition-colors shadow-lg hover:shadow-xl"
+              className="inline-flex items-center gap-2 bg-pink-500 text-white px-6 py-3 rounded-lg font-semibold text-sm hover:bg-pink-600 transition-colors shadow-lg hover:shadow-xl"
             >
               Get Custom Strategy
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
