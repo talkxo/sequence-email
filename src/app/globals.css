@@ -18,6 +18,74 @@ body {
   font-weight: 300;
 }
 
+/* Iframe optimization */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Ensure iframe content fits without external scrollbars */
+#__next {
+  height: 100%;
+  overflow-y: auto;
+}
+
+/* Iframe optimization class */
+.iframe-optimized {
+  height: 100vh;
+  max-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.iframe-optimized #__next {
+  height: 100%;
+  max-height: 100vh;
+}
+
+/* Hide scrollbar for iframe */
+.iframe-optimized {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.iframe-optimized::-webkit-scrollbar {
+  display: none; /* WebKit browsers */
+}
+
+/* Hide scrollbar for the main container */
+.hide-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* WebKit browsers */
+}
+
+/* Additional scrollbar hiding for all elements */
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* WebKit browsers */
+}
+
+/* Ensure iframe content has no visible scrollbars */
+iframe, .iframe-content {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+iframe::-webkit-scrollbar, .iframe-content::-webkit-scrollbar {
+  display: none !important;
+}
+
 /* Notion-inspired styling */
 .notion-card {
   @apply bg-white rounded-lg border border-gray-200 shadow-sm;

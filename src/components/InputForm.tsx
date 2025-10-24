@@ -121,21 +121,21 @@ export default function InputForm({ onSubmit, isLoading }: InputFormProps) {
 
   return (
     <div className="bg-white rounded-xl border border-gray-200 shadow-lg">
-      <form onSubmit={handleSubmit} className="p-4 space-y-6">
+      <form onSubmit={handleSubmit} className="p-3 space-y-4">
         {/* Product Description */}
-        <div className="space-y-4">
+        <div className="space-y-3">
           <div>
-            <h3 className="text-lg font-bold text-gray-900 mb-2">Tell us about your product</h3>
-            <p className="text-sm text-gray-600">The more details you provide, the better your email sequence will be</p>
+            <h3 className="text-base font-bold text-gray-900 mb-1">Tell us about your product</h3>
+            <p className="text-xs text-gray-600">The more details you provide, the better your email sequence will be</p>
           </div>
-          <div className="space-y-3">
+          <div className="space-y-2">
             <textarea
               id="productDescription"
               value={formData.productDescription}
               onChange={(e) => handleInputChange('productDescription', e.target.value)}
               placeholder="Example: 'We're a SaaS platform that helps small businesses automate their customer support with AI chatbots. Our customers save 10+ hours per week and see 40% faster response times. Perfect for e-commerce stores and service businesses with 50-500 employees.'"
-              className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-pink-500 resize-none text-gray-900 placeholder-gray-500 transition-all text-sm"
-              rows={3}
+              className="w-full px-3 py-2 border-2 border-gray-200 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-pink-500 resize-none text-gray-900 placeholder-gray-500 transition-all text-sm"
+              rows={2}
               required
             />
             
