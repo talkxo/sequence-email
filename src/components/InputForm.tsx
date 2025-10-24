@@ -120,30 +120,30 @@ export default function InputForm({ onSubmit, isLoading }: InputFormProps) {
   }, [formData.productDescription]);
 
   return (
-    <div className="bg-white rounded-2xl border border-gray-200 shadow-xl">
+    <div className="bg-white rounded-xl border border-gray-200 shadow-lg">
       {/* Header */}
-      <div className="p-8 border-b border-gray-100">
+      <div className="p-4 border-b border-gray-100">
         <div className="text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-3">Build Your Email Ladder</h2>
-          <p className="text-lg text-gray-600">Create a high-converting email sequence that climbs your prospects to conversion</p>
+          <h2 className="text-xl font-bold text-gray-900 mb-2">Build Your Email Ladder</h2>
+          <p className="text-sm text-gray-600">Create a high-converting email sequence that climbs your prospects to conversion</p>
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="p-8 space-y-10">
+      <form onSubmit={handleSubmit} className="p-4 space-y-6">
         {/* Product Description */}
-        <div className="space-y-6">
+        <div className="space-y-4">
           <div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-3">Tell us about your product</h3>
-            <p className="text-lg text-gray-600">The more details you provide, the better your email sequence will be</p>
+            <h3 className="text-lg font-bold text-gray-900 mb-2">Tell us about your product</h3>
+            <p className="text-sm text-gray-600">The more details you provide, the better your email sequence will be</p>
           </div>
-          <div className="space-y-4">
+          <div className="space-y-3">
             <textarea
               id="productDescription"
               value={formData.productDescription}
               onChange={(e) => handleInputChange('productDescription', e.target.value)}
               placeholder="Example: 'We're a SaaS platform that helps small businesses automate their customer support with AI chatbots. Our customers save 10+ hours per week and see 40% faster response times. Perfect for e-commerce stores and service businesses with 50-500 employees.'"
-              className="w-full px-6 py-5 border-2 border-gray-200 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 resize-none text-gray-900 placeholder-gray-500 transition-all text-lg"
-              rows={4}
+              className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 resize-none text-gray-900 placeholder-gray-500 transition-all text-sm"
+              rows={3}
               required
             />
             
@@ -168,9 +168,9 @@ export default function InputForm({ onSubmit, isLoading }: InputFormProps) {
                 type="button"
                 onClick={handleAutofill}
                 disabled={isAutofilling || !formData.productDescription.trim()}
-                className="px-6 py-3 text-sm bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors disabled:opacity-50 font-semibold flex items-center gap-2 shadow-lg hover:shadow-xl"
+                className="px-4 py-2 text-xs bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors disabled:opacity-50 font-semibold flex items-center gap-2 shadow-lg hover:shadow-xl"
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
                 Auto-fill with AI
@@ -188,21 +188,21 @@ export default function InputForm({ onSubmit, isLoading }: InputFormProps) {
         </div>
 
         {/* Campaign Settings */}
-        <div className="space-y-8">
+        <div className="space-y-4">
           <div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-3">Campaign Settings</h3>
-            <p className="text-lg text-gray-600">Configure your email campaign goals and preferences</p>
+            <h3 className="text-lg font-bold text-gray-900 mb-2">Campaign Settings</h3>
+            <p className="text-sm text-gray-600">Configure your email campaign goals and preferences</p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {/* Campaign Goal */}
             <div>
-              <label className="block text-lg font-semibold text-gray-900 mb-4">Campaign Goal</label>
+              <label className="block text-sm font-semibold text-gray-900 mb-2">Campaign Goal</label>
               <div className="relative">
                 <select
                   value={formData.primaryGoal}
                   onChange={(e) => handleInputChange('primaryGoal', e.target.value)}
-                  className="w-full px-6 py-4 border-2 border-gray-200 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 appearance-none bg-white pr-12 text-lg"
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 appearance-none bg-white pr-10 text-sm"
                 >
                   {PRIMARY_GOALS.map((goal) => (
                     <option key={goal.value} value={goal.value}>
@@ -223,12 +223,12 @@ export default function InputForm({ onSubmit, isLoading }: InputFormProps) {
 
             {/* Email Tone */}
             <div>
-              <label className="block text-lg font-semibold text-gray-900 mb-4">Email Tone</label>
+              <label className="block text-sm font-semibold text-gray-900 mb-2">Email Tone</label>
               <div className="relative">
                 <select
                   value={formData.toneOfVoice}
                   onChange={(e) => handleInputChange('toneOfVoice', e.target.value)}
-                  className="w-full px-6 py-4 border-2 border-gray-200 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 appearance-none bg-white pr-12 text-lg"
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 appearance-none bg-white pr-10 text-sm"
                 >
                   {TONE_OPTIONS.map((tone) => (
                     <option key={tone.value} value={tone.value}>
@@ -250,21 +250,21 @@ export default function InputForm({ onSubmit, isLoading }: InputFormProps) {
 
           {/* Sequence Length */}
           <div>
-            <label className="block text-lg font-semibold text-gray-900 mb-4">Sequence Length</label>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <label className="block text-sm font-semibold text-gray-900 mb-3">Sequence Length</label>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {EMAIL_COUNT_PRESETS.map((preset) => (
                 <button
                   key={preset.value}
                   type="button"
                   onClick={() => handleInputChange('numberOfEmails', preset.value)}
-                  className={`p-6 rounded-xl border-2 text-left transition-all ${
+                  className={`p-4 rounded-lg border-2 text-left transition-all ${
                     formData.numberOfEmails === preset.value
                       ? 'border-purple-500 bg-purple-50 text-purple-900 shadow-lg'
                       : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50 hover:shadow-md'
                   }`}
                 >
-                  <div className="font-semibold text-lg">{preset.label}</div>
-                  <div className="text-sm text-gray-500 mt-2">{preset.description}</div>
+                  <div className="font-semibold text-sm">{preset.label}</div>
+                  <div className="text-xs text-gray-500 mt-1">{preset.description}</div>
                 </button>
               ))}
             </div>
@@ -272,14 +272,14 @@ export default function InputForm({ onSubmit, isLoading }: InputFormProps) {
         </div>
 
         {/* Advanced Settings Toggle */}
-        <div className="border-t border-gray-100 pt-6">
+        <div className="border-t border-gray-100 pt-4">
           <button
             type="button"
             onClick={() => setShowAdvanced(!showAdvanced)}
-            className="flex items-center gap-3 text-lg text-gray-600 hover:text-gray-900 transition-colors font-semibold"
+            className="flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 transition-colors font-semibold"
           >
             <svg
-              className={`w-5 h-5 transition-transform ${showAdvanced ? 'rotate-180' : ''}`}
+              className={`w-4 h-4 transition-transform ${showAdvanced ? 'rotate-180' : ''}`}
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -292,9 +292,9 @@ export default function InputForm({ onSubmit, isLoading }: InputFormProps) {
 
         {/* Advanced Settings */}
         {showAdvanced && (
-          <div className="space-y-6 pt-4">
+          <div className="space-y-4 pt-3">
             <div>
-              <label htmlFor="targetAudience" className="block text-lg font-semibold text-gray-900 mb-4">
+              <label htmlFor="targetAudience" className="block text-sm font-semibold text-gray-900 mb-2">
                 Target Audience
               </label>
               <textarea
@@ -302,13 +302,13 @@ export default function InputForm({ onSubmit, isLoading }: InputFormProps) {
                 value={formData.targetAudience}
                 onChange={(e) => handleInputChange('targetAudience', e.target.value)}
                 placeholder="Who are your ideal customers? (job titles, demographics, company size, etc.)"
-                className="w-full px-6 py-4 border-2 border-gray-200 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 resize-none text-gray-900 placeholder-gray-500 text-lg"
+                className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 resize-none text-gray-900 placeholder-gray-500 text-sm"
                 rows={2}
               />
             </div>
 
             <div>
-              <label htmlFor="painPoints" className="block text-lg font-semibold text-gray-900 mb-4">
+              <label htmlFor="painPoints" className="block text-sm font-semibold text-gray-900 mb-2">
                 Customer Pain Points
               </label>
               <textarea
@@ -316,7 +316,7 @@ export default function InputForm({ onSubmit, isLoading }: InputFormProps) {
                 value={formData.painPoints}
                 onChange={(e) => handleInputChange('painPoints', e.target.value)}
                 placeholder="What problems does your product solve? What challenges do customers face?"
-                className="w-full px-6 py-4 border-2 border-gray-200 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 resize-none text-gray-900 placeholder-gray-500 text-lg"
+                className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 resize-none text-gray-900 placeholder-gray-500 text-sm"
                 rows={2}
               />
             </div>
@@ -324,20 +324,20 @@ export default function InputForm({ onSubmit, isLoading }: InputFormProps) {
         )}
 
         {/* Submit Button */}
-        <div className="pt-8 border-t border-gray-100">
+        <div className="pt-4 border-t border-gray-100">
           <button
             type="submit"
             disabled={isLoading || !isFormValid}
-            className="w-full bg-purple-600 text-white py-6 px-8 rounded-xl hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all font-bold text-xl flex items-center justify-center gap-4 shadow-xl hover:shadow-2xl"
+            className="w-full bg-purple-600 text-white py-4 px-6 rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all font-bold text-base flex items-center justify-center gap-3 shadow-lg hover:shadow-xl"
           >
             {isLoading ? (
               <>
-                <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                 Generating Your Sequence...
               </>
             ) : (
               <>
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                 </svg>
                 Build My Email Ladder
@@ -345,7 +345,7 @@ export default function InputForm({ onSubmit, isLoading }: InputFormProps) {
             )}
           </button>
           {!isFormValid && (
-            <p className="text-center text-lg text-gray-500 mt-4">Please describe your product to continue</p>
+            <p className="text-center text-sm text-gray-500 mt-3">Please describe your product to continue</p>
           )}
         </div>
       </form>
