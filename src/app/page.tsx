@@ -45,44 +45,81 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-4xl mx-auto px-4 py-8">
-        {/* Streamlined Header */}
-        <div className="text-center mb-8">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center">
-              <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+    <div className="min-h-screen bg-white">
+      {/* Stripe-style Hero Section */}
+      <div className="relative">
+        {/* Gradient accent bar */}
+        <div className="h-1 bg-gradient-to-r from-pink-500 via-red-500 to-purple-600"></div>
+        
+        <div className="max-w-6xl mx-auto px-6 py-16">
+          {/* Header with logo and branding */}
+          <div className="flex items-center gap-3 mb-8">
+            <div className="w-8 h-8 bg-gray-900 rounded flex items-center justify-center">
+              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.274 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.407-2.354 1.407-1.852 0-4.389-.921-6.09-1.631l-.89 5.494C5.748 23.726 8.303 24 11.835 24c2.498 0 4.576-.654 6.061-1.872 1.544-1.275 2.347-3.12 2.347-5.346 0-3.219-1.343-4.38-3.307-5.632z"/>
               </svg>
             </div>
-            <h1 className="text-3xl font-semibold text-gray-900">
-              AI Email Nurture Generator
+            <span className="text-sm font-semibold text-gray-900 tracking-wide">LADDER FOR EMAIL MARKETERS</span>
+          </div>
+
+          {/* Main headline with colored highlights */}
+          <div className="text-center mb-8">
+            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 leading-tight mb-6">
+              The <span className="text-pink-500">ladder</span> that{' '}
+              <span className="text-purple-600">climbs</span> your email marketing to new heights
             </h1>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Designed for email marketers who want to scale their campaigns, Ladder generates high-converting email sequences that turn prospects into customers.
+            </p>
+          </div>
+
+          {/* CTA Buttons */}
+          <div className="flex items-center justify-center gap-4 mb-16">
+            <button
+              onClick={() => document.getElementById('email-form')?.scrollIntoView({ behavior: 'smooth' })}
+              className="bg-purple-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-purple-700 transition-colors flex items-center gap-2 shadow-lg hover:shadow-xl"
+            >
+              Start climbing with Ladder
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+            <button className="text-gray-900 font-semibold text-lg hover:text-gray-700 transition-colors flex items-center gap-2">
+              Learn more
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
           </div>
         </div>
+      </div>
 
-        <div className="space-y-6">
-          <InputForm onSubmit={handleFormSubmit} isLoading={isLoading} />
+      {/* Form Section */}
+      <div id="email-form" className="bg-gray-50 py-16">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="space-y-6">
+            <InputForm onSubmit={handleFormSubmit} isLoading={isLoading} />
 
-          {error && (
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-              <div className="flex items-start">
-                <div className="flex-shrink-0">
-                  <svg className="h-5 w-5 text-red-400 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <div className="ml-3">
-                  <h3 className="text-sm font-medium text-red-800">
-                    Error generating email sequence
-                  </h3>
-                  <div className="mt-1 text-sm text-red-700">
-                    {error}
+            {error && (
+              <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                <div className="flex items-start">
+                  <div className="flex-shrink-0">
+                    <svg className="h-5 w-5 text-red-400 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div className="ml-3">
+                    <h3 className="text-sm font-medium text-red-800">
+                      Error generating email sequence
+                    </h3>
+                    <div className="mt-1 text-sm text-red-700">
+                      {error}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </div>
     </div>

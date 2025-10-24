@@ -18,7 +18,7 @@ export default function SequenceOutput({ emails }: SequenceOutputProps) {
       let content = '';
       
       if (format === 'md') {
-        content = '# Email Nurture Sequence\n\n';
+        content = '# Email Ladder\n\n';
         emails.forEach((email, index) => {
           content += `## Email ${email.emailNumber}\n\n`;
           content += `**Subject:** ${email.subject}\n\n`;

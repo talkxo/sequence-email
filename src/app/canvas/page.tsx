@@ -350,7 +350,7 @@ export default function CanvasPage() {
           href="/"
           className="text-blue-600 hover:text-blue-800 text-xs font-medium"
         >
-          ← Back to Form Generator
+          ← Back to Ladder Builder
         </Link>
       </div>
       <Toolbar 

@@ -9,8 +9,8 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "AI Email Nurture Sequence Generator",
-  description: "Generate complete email nurture sequences with AI. Transform your marketing with personalized, multi-step email campaigns.",
+  title: "Ladder for Email Marketers",
+  description: "The ladder that climbs your email marketing to new heights. Generate high-converting email sequences that turn prospects into customers.",
 };
 
 export default function RootLayout({
