@@ -86,6 +86,17 @@ iframe::-webkit-scrollbar, .iframe-content::-webkit-scrollbar {
   display: none !important;
 }
 
+/* Prevent mobile zoom on form inputs */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="tel"],
+input[type="url"],
+textarea,
+select {
+  font-size: 16px !important;
+}
+
 /* Notion-inspired styling */
 .notion-card {
   @apply bg-white rounded-lg border border-gray-200 shadow-sm;

@@ -134,7 +134,7 @@ export default function InputForm({ onSubmit, isLoading }: InputFormProps) {
               value={formData.productDescription}
               onChange={(e) => handleInputChange('productDescription', e.target.value)}
               placeholder="Example: 'We're a SaaS platform that helps small businesses automate their customer support with AI chatbots. Our customers save 10+ hours per week and see 40% faster response times. Perfect for e-commerce stores and service businesses with 50-500 employees.'"
-              className="w-full px-3 py-2 border-2 border-gray-200 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-pink-500 resize-none text-gray-900 placeholder-gray-500 transition-all text-sm"
+              className="w-full px-3 py-2 border-2 border-gray-200 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-pink-500 resize-none text-gray-900 placeholder-gray-500 transition-all text-base"
               rows={2}
               required
             />
@@ -194,7 +194,7 @@ export default function InputForm({ onSubmit, isLoading }: InputFormProps) {
                 <select
                   value={formData.primaryGoal}
                   onChange={(e) => handleInputChange('primaryGoal', e.target.value)}
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-pink-500 appearance-none bg-white pr-10 text-sm"
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-pink-500 appearance-none bg-white pr-10 text-base"
                 >
                   {PRIMARY_GOALS.map((goal) => (
                     <option key={goal.value} value={goal.value}>
@@ -220,7 +220,7 @@ export default function InputForm({ onSubmit, isLoading }: InputFormProps) {
                 <select
                   value={formData.toneOfVoice}
                   onChange={(e) => handleInputChange('toneOfVoice', e.target.value)}
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-pink-500 appearance-none bg-white pr-10 text-sm"
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-pink-500 appearance-none bg-white pr-10 text-base"
                 >
                   {TONE_OPTIONS.map((tone) => (
                     <option key={tone.value} value={tone.value}>
@@ -294,7 +294,7 @@ export default function InputForm({ onSubmit, isLoading }: InputFormProps) {
                 value={formData.targetAudience}
                 onChange={(e) => handleInputChange('targetAudience', e.target.value)}
                 placeholder="Who are your ideal customers? (job titles, demographics, company size, etc.)"
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-pink-500 resize-none text-gray-900 placeholder-gray-500 text-sm"
+                className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-pink-500 resize-none text-gray-900 placeholder-gray-500 text-base"
                 rows={2}
               />
             </div>
@@ -308,7 +308,7 @@ export default function InputForm({ onSubmit, isLoading }: InputFormProps) {
                 value={formData.painPoints}
                 onChange={(e) => handleInputChange('painPoints', e.target.value)}
                 placeholder="What problems does your product solve? What challenges do customers face?"
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-pink-500 resize-none text-gray-900 placeholder-gray-500 text-sm"
+                className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-pink-500 resize-none text-gray-900 placeholder-gray-500 text-base"
                 rows={2}
               />
             </div>
