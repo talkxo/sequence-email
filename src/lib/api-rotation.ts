@@ -69,6 +69,13 @@ export const MODEL_CONFIGS: ModelConfig[] = [
   }
 ];
 
+// Determine correct Referer/Title for OpenRouter (production + local)
+const OPENROUTER_REFERER =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000');
+
+const OPENROUTER_TITLE = process.env.APP_NAME || 'Email Nurture Generator';
+
 class ApiKeyManager {
   private keys: ApiKey[] = [];
   private currentKeyIndex = 0;
@@ -207,8 +214,8 @@ export async function makeApiCall(
         headers: {
           'Authorization': `Bearer ${key.key}`,
           'Content-Type': 'application/json',
-          'HTTP-Referer': 'http://localhost:3000',
-          'X-Title': 'Email Nurture Generator'
+          'HTTP-Referer': OPENROUTER_REFERER,
+          'X-Title': OPENROUTER_TITLE
         },
         body: JSON.stringify({
           model: model.id,
