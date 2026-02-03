@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { FormData, Email } from '@/types';
 
 const OPENROUTER_API_URL = 'https://openrouter.ai/api/v1/chat/completions';
-const PRIMARY_MODEL = 'meta-llama/llama-3.2-3b-instruct:free';
-const FALLBACK_MODEL = 'microsoft/phi-3-mini-128k-instruct:free';
+const PRIMARY_MODEL = 'stepfun/step-3.5-flash:free';
+const FALLBACK_MODEL = 'stepfun/step-3.5-flash:free';
 
 export async function POST(request: NextRequest) {
   try {

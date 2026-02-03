@@ -23,8 +23,8 @@ export interface ModelConfig {
 // Fast free models with good context memory (ordered by speed + quality)
 export const MODEL_CONFIGS: ModelConfig[] = [
   {
-    id: 'meta-llama/llama-3.2-3b-instruct:free',
-    name: 'Llama 3.2 3B',
+    id: 'stepfun/step-3.5-flash:free',
+    name: 'Step 3.5 Flash (free)',
     contextLength: 8192,
     speed: 'fast',
     quality: 'high',
@@ -32,8 +32,8 @@ export const MODEL_CONFIGS: ModelConfig[] = [
     priority: 1
   },
   {
-    id: 'microsoft/phi-3-mini-128k-instruct:free',
-    name: 'Phi-3 Mini 128K',
+    id: 'stepfun/step-3.5-flash:free',
+    name: 'Step 3.5 Flash (free)',
     contextLength: 128000,
     speed: 'fast',
     quality: 'high',
@@ -41,8 +41,8 @@ export const MODEL_CONFIGS: ModelConfig[] = [
     priority: 2
   },
   {
-    id: 'meta-llama/llama-3.1-8b-instruct:free',
-    name: 'Llama 3.1 8B',
+    id: 'stepfun/step-3.5-flash:free',
+    name: 'Step 3.5 Flash (free)',
     contextLength: 8192,
     speed: 'medium',
     quality: 'high',
@@ -50,8 +50,8 @@ export const MODEL_CONFIGS: ModelConfig[] = [
     priority: 3
   },
   {
-    id: 'openchat/openchat-7b:free',
-    name: 'OpenChat 7B',
+    id: 'stepfun/step-3.5-flash:free',
+    name: 'Step 3.5 Flash (free)',
     contextLength: 8192,
     speed: 'fast',
     quality: 'medium',
@@ -59,8 +59,8 @@ export const MODEL_CONFIGS: ModelConfig[] = [
     priority: 4
   },
   {
-    id: 'google/gemma-2-9b-it:free',
-    name: 'Gemma 2 9B',
+    id: 'stepfun/step-3.5-flash:free',
+    name: 'Step 3.5 Flash (free)',
     contextLength: 8192,
     speed: 'medium',
     quality: 'high',
