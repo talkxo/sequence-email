@@ -98,10 +98,19 @@ class ApiKeyManager {
   }
 
   getCurrentKey(): ApiKey {
-    const activeKeys = this.keys.filter(k => k.isActive);
-    if (activeKeys.length === 0) {
-      throw new Error('No active API keys available');
+    let activeKeys = this.keys.filter(k => k.isActive);
+
+    // Safety fallback: if all keys were temporarily disabled, re-enable them
+    if (activeKeys.length === 0 && this.keys.length > 0) {
+      console.warn('All API keys were marked inactive. Re-enabling all keys to restore service.');
+      this.keys.forEach(k => { k.isActive = true; });
+      activeKeys = this.keys;
     }
+
+    if (activeKeys.length === 0) {
+      throw new Error('No OpenRouter API keys configured');
+    }
+
     return activeKeys[this.currentKeyIndex % activeKeys.length];
   }
 
@@ -118,19 +127,9 @@ class ApiKeyManager {
   recordError(key: ApiKey) {
     key.errorCount++;
     key.lastUsed = new Date();
-    
-    // If error rate is too high, temporarily disable the key
-    const errorRate = key.errorCount / (key.successCount + key.errorCount);
-    if (errorRate > 0.5 && key.successCount + key.errorCount > 5) {
-      console.warn(`Temporarily disabling key ${key.name} due to high error rate: ${errorRate.toFixed(2)}`);
-      key.isActive = false;
-      
-      // Re-enable after 5 minutes
-      setTimeout(() => {
-        key.isActive = true;
-        console.log(`Re-enabled key ${key.name}`);
-      }, 5 * 60 * 1000);
-    }
+    // We no longer permanently disable keys based on error rate.
+    // OpenRouter errors can be transient (model load, routing, rate limits),
+    // and in serverless environments long-lived timers are unreliable.
   }
 
   getBestModel(): ModelConfig {
@@ -158,9 +157,14 @@ class ApiKeyManager {
   }
 
   getStats() {
+    const activeCount = this.keys.filter(k => k.isActive).length;
+    const effectiveActiveCount = activeCount === 0 && this.keys.length > 0
+      ? this.keys.length
+      : activeCount;
+
     return {
       totalKeys: this.keys.length,
-      activeKeys: this.keys.filter(k => k.isActive).length,
+      activeKeys: effectiveActiveCount,
       totalRequests: this.keys.reduce((sum, k) => sum + k.successCount + k.errorCount, 0),
       successRate: this.keys.reduce((sum, k) => sum + k.successCount, 0) / 
                    this.keys.reduce((sum, k) => sum + k.successCount + k.errorCount, 0) || 0,
